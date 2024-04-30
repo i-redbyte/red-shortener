@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"red-shortener/internal/http-server/handlers/redirect"
+
 	"log/slog"
 	"net/http"
 	"os"
@@ -41,7 +43,8 @@ func main() {
 	router.Use(logger.New(log))
 	router.Use(middleware.Recoverer)
 	router.Use(middleware.URLFormat)
-	router.Post("/save", save.New(log, storage))
+	router.Post("/url", save.New(log, storage))
+	router.Get("/{alias}", redirect.New(log, storage))
 	log.Info("starting server", slog.String("address", cfg.Address))
 	server := &http.Server{
 		Addr:         cfg.Address,
