@@ -13,10 +13,6 @@ type URLGetter struct {
 func (_m *URLGetter) GetURL(alias string) (string, error) {
 	ret := _m.Called(alias)
 
-	if len(ret) == 0 {
-		panic("no return value specified for GetURL")
-	}
-
 	var r0 string
 	var r1 error
 	if rf, ok := ret.Get(0).(func(string) (string, error)); ok {
