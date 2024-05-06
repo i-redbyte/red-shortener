@@ -1,0 +1,15 @@
+[Unit]
+Description=Red Shortener
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/apps/red-shortener
+ExecStart=/root/apps/red-shortener/red-shortener
+Restart=always
+RestartSec=4
+StandardOutput=inherit
+EnvironmentFile=/root/apps/red-shortener/config.env
+
+[Install]
+WantedBy=multi-user.target
